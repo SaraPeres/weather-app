@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WeatherApp</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/50d7bacd04.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/style.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="container shadow">
+      <form id="search-city-form">
+        <input
+          type="search"
+          id="enter-city"
+          placeholder="Enter city name"
+          class="shadow-sm"
+          autocomplete="off"
+        />
+        <input
+          type="submit"
+          id="search_city"
+          value="Search"
+          class="shadow-sm"
+        />
+      </form>
+
+      <h1 id="city-heading">Porto</h1>
+      <h6 id="date">Fri, 24 Apr 2020 18:06</h6>
+      <button id="current-location-button" class="shadow-sm">Current</button>
+      <div class="weather-today shadow">
+        <h2>
+          <span id="temperature">18°</span><a href="#" id="celsius">C</a>|<a
+            href="#"
+            id="fahrenheit"
+            >F</a
+          >
+        </h2>
+        <h3>
+          <span id="current-weather-description">Clouds </span
+          ><i class="fas fa-cloud-sun"></i>
+        </h3>
+        <h4>
+          <span id="current-min-temp">15˚</span>/<span id="current-max-temp"
+            >20˚</span
+          >
+        </h4>
+      </div>
+
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-2 next-days">
+          Sat
+        </div>
+        <div class="col-2 next-days">
+          Sun
+        </div>
+        <div class="col-2 next-days">
+          Mon
+        </div>
+        <div class="col-2 next-days">
+          Tue
+        </div>
+        <div class="col-2 next-days">
+          Wed
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <div class="line"></div>
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-2 next-days-icons">
+          <i class="fas fa-cloud-sun"></i>
+        </div>
+        <div class="col-2 next-days-icons">
+          <i class="fas fa-sun"></i>
+        </div>
+        <div class="col-2 next-days-icons">
+          <i class="fas fa-sun"></i>
+        </div>
+        <div class="col-2 next-days-icons">
+          <i class="fas fa-cloud-sun-rain"></i>
+        </div>
+        <div class="col-2 next-days-icons">
+          <i class="fas fa-cloud-showers-heavy"></i>
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-2 next-days-temp">
+          16˚/20˚
+        </div>
+        <div class="col-2 next-days-temp">
+          17˚/20˚
+        </div>
+        <div class="col-2 next-days-temp">
+          18˚/21˚
+        </div>
+        <div class="col-2 next-days-temp">
+          15˚/18˚
+        </div>
+        <div class="col-2 next-days-temp">
+          13˚/16˚
+        </div>
+        <div class="col-1"></div>
+      </div>
+    </div>
+    <script src="src/script.js"></script>
+  </body>
+</html>
