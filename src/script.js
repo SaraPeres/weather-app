@@ -12,20 +12,6 @@ function searchCity(city) {
     searchCity(city.value);
   }
   
-  function searchCurrentLocation(event) {
-    event.preventDefault();
-    navigator.geolocation.getCurrentPosition(getCurrentLocation);
-  
-    function getCurrentLocation(position) {
-      let lat = position.coords.latitude;
-      let lon = position.coords.longitude;
-  
-      let apiKey = "d3565a1a83ca66a70607e27406dc0152";
-      let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-      axios.get(apiUrl).then(showWeather);
-    }
-  }
-  
   function showWeather(response) {
     console.log(response.data);
   
@@ -87,11 +73,6 @@ function searchCity(city) {
   let cityForm = document.querySelector("#search-city-form");
   cityForm.addEventListener("submit", handleSubmit);
   
-  let currentButton = document.querySelector("#current-location-button");
-  currentButton.addEventListener("click", searchCurrentLocation);
-  
-  searchCity("Porto");
-  
   let now = new Date();
   
   let dayWeek = now.getDay();
@@ -137,4 +118,6 @@ function searchCity(city) {
   
   let tempFahrenheit = document.querySelector("#fahrenheit");
   tempFahrenheit.addEventListener("click", getFahrenheit);
+
+  searchCity("Porto");
   

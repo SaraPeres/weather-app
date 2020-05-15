@@ -60,17 +60,10 @@ body {
     border-radius: 5px;
     color: white;
   }
-  #search_city:hover,
-  #current-location-button:hover {
+  #search_city:hover {
     background: white;
     color: #fda085;
     transition: all 500ms ease;
-  }
-  #current-location-button {
-    display: block;
-    margin: auto;
-    margin-top: 30px;
-    margin-bottom: 0;
   }
   .weather-today {
     border: 5px solid white;
