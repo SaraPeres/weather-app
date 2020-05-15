@@ -74,15 +74,22 @@ body {
     margin: 50px auto;
     padding: 45px 0;
   }
-  #celsius,
-  #fahrenheit {
+  .units {
     color: white;
   }
-  #celsius:hover,
-  #fahrenheit:hover {
+  .units:hover {
     opacity: 0.6;
+    color: white;
     text-decoration: none;
     transition: all 200ms ease;
+  }
+
+  .active:hover {
+    opacity: 1;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+    transition: none;
   }
   
   .next-days,
