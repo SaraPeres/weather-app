@@ -78,18 +78,21 @@ body {
   }
   .units {
     color: white;
+    opacity: 0.6;
   }
   .units:hover {
-    opacity: 0.6;
+    opacity: 0.4;
     color: white;
     text-decoration: none;
     transition: all 200ms ease;
   }
 
+  .active {
+    opacity: 1;
+  }
   .active:hover {
     opacity: 1;
     cursor: default;
-    color: white;
   
   }
   #current-weather-icon {

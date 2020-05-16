@@ -14,8 +14,10 @@ function searchCity(city) {
   
   function showWeather(response) {
     console.log(response.data);
+
+    city = response.data.name;
   
-    document.querySelector("#city-heading").innerHTML = `${response.data.name}`;
+    document.querySelector("#city-heading").innerHTML = `${city}`;
   
     document.querySelector("#temperature").innerHTML = `${Math.round(
       response.data.main.temp
@@ -38,43 +40,55 @@ function searchCity(city) {
   
   function getCelsius(event) {
     event.preventDefault();
-    let city = document.querySelector("#enter-city");
-  
+    
     let apiKey = "d3565a1a83ca66a70607e27406dc0152";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${
-      city.value
+      city
     }&appid=${apiKey}&units=metric`;
   
     axios.get(apiUrl).then(showCelsius);
   }
   
   function showCelsius(response) {
-    let tempHeading = document.querySelector("#temperature");
+    document.querySelector("#celsius").classList.add("active");
+    document.querySelector("#fahrenheit").classList.remove("active");
     let currentTemp = Math.round(response.data.main.temp);
-    tempHeading.innerHTML = `${currentTemp}°`;
+    document.querySelector("#temperature").innerHTML = `${currentTemp}°`;
   }
   
   function getFahrenheit(event) {
     event.preventDefault();
-    let city = document.querySelector("#enter-city");
-  
+
     let apiKey = "d3565a1a83ca66a70607e27406dc0152";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${
-      city.value
+      city
     }&appid=${apiKey}&units=imperial`;
   
     axios.get(apiUrl).then(showFahrenheit);
   }
   
   function showFahrenheit(response) {
-    let tempHeading = document.querySelector("#temperature");
+    document.querySelector("#fahrenheit").classList.add("active");
+    document.querySelector("#celsius").classList.remove("active");
     let currentTemp = Math.round(response.data.main.temp);
-    tempHeading.innerHTML = `${currentTemp}°`;
+    document.querySelector("#temperature").innerHTML = `${currentTemp}°`;
   }
+
+  let city = null;
   
   let cityForm = document.querySelector("#search-city-form");
   cityForm.addEventListener("submit", handleSubmit);
   
+  let tempCelsius = document.querySelector("#celsius");
+  tempCelsius.addEventListener("click", getCelsius);
+  
+  let tempFahrenheit = document.querySelector("#fahrenheit");
+  tempFahrenheit.addEventListener("click", getFahrenheit);
+
+  searchCity("Porto");
+
+
+// date -> change later
   let now = new Date();
   
   let dayWeek = now.getDay();
@@ -114,12 +128,5 @@ function searchCity(city) {
   currentDate.innerHTML = `${days[dayWeek]}, ${dayMonth} ${
     months[month]
   } ${year} ${hour}:${minutes}`;
-  
-  let tempCelsius = document.querySelector("#celsius");
-  tempCelsius.addEventListener("click", getCelsius);
-  
-  let tempFahrenheit = document.querySelector("#fahrenheit");
-  tempFahrenheit.addEventListener("click", getFahrenheit);
 
-  searchCity("Porto");
   
