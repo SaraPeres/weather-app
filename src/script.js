@@ -125,7 +125,7 @@ for (let index = 0; index < 4; index++) {
 
 for (let index = 0; index < 4; index++) {
   forecastTempElement.innerHTML += `<div class="col-3 next-hours-temp">
-  ${Math.round(response.data.list[index].main.temp_min)}˚/${Math.round(response.data.list[index].main.temp_max)}˚
+  ${Math.round(response.data.list[index].main.temp_min)}˚/${Math.round(response.data.list[index].main.temp_max)}˚C
 </div>`;
 }
 
