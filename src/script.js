@@ -13,7 +13,6 @@ function searchCity(city) {
   }
   
   function showWeather(response) {
-    console.log(response.data);
 
     city = response.data.name;
   
@@ -36,6 +35,49 @@ function searchCity(city) {
     )}°`;
 
     document.querySelector("#current-weather-icon").setAttribute('src', `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+  
+  showDate(response.data.dt *1000)
+    }
+  function showDate(timestamp) {
+    let now = new Date(timestamp);
+    
+    let dayWeek = now.getDay();
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thr", "Fri", "Sat"];
+    
+    let dayMonth = now.getDate();
+    
+    let month = now.getMonth();
+    let months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ];
+    
+    let year = now.getFullYear();
+    
+    let hour = now.getHours();
+    if (hour < 10) {
+      hour = `0${hour}`;
+    }
+    
+    let minutes = now.getMinutes();
+    if (minutes < 10) {
+      minutes = `0${minutes}`;
+    }
+    
+    let currentDate = document.querySelector("#date");
+    currentDate.innerHTML = `Updated:<br />${days[dayWeek]}, ${dayMonth} ${
+      months[month]
+    } ${year} ${hour}:${minutes}`;
   }
   
   function getCelsius(event) {
@@ -88,45 +130,6 @@ function searchCity(city) {
   searchCity("Porto");
 
 
-// date -> change later
-  let now = new Date();
   
-  let dayWeek = now.getDay();
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thr", "Fri", "Sat"];
-  
-  let dayMonth = now.getDate();
-  
-  let month = now.getMonth();
-  let months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec"
-  ];
-  
-  let year = now.getFullYear();
-  
-  let hour = now.getHours();
-  if (hour < 10) {
-    hour = `0${hour}`;
-  }
-  
-  let minutes = now.getMinutes();
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-  
-  let currentDate = document.querySelector("#date");
-  currentDate.innerHTML = `${days[dayWeek]}, ${dayMonth} ${
-    months[month]
-  } ${year} ${hour}:${minutes}`;
 
   

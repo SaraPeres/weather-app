@@ -97,6 +97,9 @@ body {
   }
   #current-weather-icon {
     width: 60px;
+    position: relative;
+    bottom: 6px;
+    right: 2px;
   }
   
   .next-days,
