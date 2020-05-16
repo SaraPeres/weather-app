@@ -3,6 +3,9 @@ function searchCity(city) {
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   
     axios.get(apiUrl).then(showWeather);
+
+    apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(showForecast);
   }
   
   function handleSubmit(event) {
@@ -35,9 +38,10 @@ function searchCity(city) {
     )}°`;
 
     document.querySelector("#current-weather-icon").setAttribute('src', `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
-  
+    
   showDate(response.data.dt *1000)
     }
+  
   function showDate(timestamp) {
     let now = new Date(timestamp);
     
@@ -64,9 +68,9 @@ function searchCity(city) {
     
     let year = now.getFullYear();
     
-    let hour = now.getHours();
-    if (hour < 10) {
-      hour = `0${hour}`;
+    let hours = now.getHours();
+    if (hours < 10) {
+      hours = `0${hours}`;
     }
     
     let minutes = now.getMinutes();
@@ -77,9 +81,58 @@ function searchCity(city) {
     let currentDate = document.querySelector("#date");
     currentDate.innerHTML = `Updated:<br />${days[dayWeek]}, ${dayMonth} ${
       months[month]
-    } ${year} ${hour}:${minutes}`;
+    } ${year} ${hours}:${minutes}`;
   }
-  
+
+  function formatForecastDate(timestamp) {
+
+    let now = new Date(timestamp);
+    let hours = now.getHours();
+    if (hours < 10) {
+      hours = `0${hours}`;
+    }
+    
+    let minutes = now.getMinutes();
+    if (minutes < 10) {
+      minutes = `0${minutes}`;
+    }
+    return `${hours}:${minutes}`
+  }
+
+  function showForecast(response) {
+    console.log(response.data)
+
+let forecastTimeElement= document.querySelector("#forecast-time")
+let forecastIconsElement= document.querySelector("#forecast-weather-icons")
+let forecastTempElement= document.querySelector("#forecast-weather-temp")
+
+forecastTimeElement.innerHTML= null;
+forecastIconsElement.innerHTML= null;
+forecastTempElement.innerHTML=null;
+
+for (let index = 0; index < 4; index++) {
+  forecastTimeElement.innerHTML += `<div class="col-3 next-hours">
+  ${formatForecastDate(response.data.list[index].dt * 1000)}
+</div>`;
+}
+
+
+for (let index = 0; index < 4; index++) {
+  forecastIconsElement.innerHTML += `<div class="col-3 next-hours-icons">
+<img class="forecast-icons" src="http://openweathermap.org/img/wn/${response.data.list[index].weather[0].icon}@2x.png">
+</div>`;
+}
+
+for (let index = 0; index < 4; index++) {
+  forecastTempElement.innerHTML += `<div class="col-3 next-hours-temp">
+  ${Math.round(response.data.list[index].main.temp_min)}˚/${Math.round(response.data.list[index].main.temp_max)}˚
+</div>`;
+}
+
+  }
+
+
+
   function getCelsius(event) {
     event.preventDefault();
     
