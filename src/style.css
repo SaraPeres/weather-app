@@ -24,6 +24,7 @@ body {
   h3,
   h4 {
     color: white;
+    margin-bottom: 0;
   }
   h2 {
     font-size: 50px;
@@ -50,6 +51,7 @@ body {
     margin-bottom: 30px;
     background: transparent;
     border: 2px solid white;
+    color: white;
   }
   #search_city,
   #current-location-button {
@@ -86,10 +88,12 @@ body {
 
   .active:hover {
     opacity: 1;
-    cursor: pointer;
+    cursor: default;
     color: white;
-    text-decoration: none;
-    transition: none;
+  
+  }
+  #current-weather-icon {
+    width: 60px;
   }
   
   .next-days,
